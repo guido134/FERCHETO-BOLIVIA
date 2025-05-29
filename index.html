@@ -768,7 +768,7 @@
                 <a href="tel:+59178373000" class="btn">
                     <i class="fi fi-rr-phone-call"></i> Llamar
                 </a>
-                <a href="" id="emailBtn1" class="btn">
+                <a href="" id="emailBtn" class="btn" onclick="sendEmail()">
                     <i class="fi fi-rr-envelope"></i> Email
                 </a>
                 <a href="https://wa.me/+59178373000" class="btn">
@@ -890,7 +890,7 @@
                         <div class="product-info">
                             <h3 class="product-title">Priximamente</h3>
                             <!--<div class="product-price">$149</div>-->
-                            <p class="product-description">Priximamente mas productos de Ferchetto-Bolivia</p>
+                            <p class="product-description">Proximamente mas productos de Ferchetto-Bolivia</p>
                         </div>
                     </div>
 
@@ -1014,31 +1014,21 @@
 
     <script>
         // JavaScript para detectar dispositivo
-        function isMobile() {
-            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
-                || window.innerWidth <= 768;
-        }
-        
-        function setupEmailButton() {
-            const btn = document.getElementById('emailBtn1');
-            const deviceInfo = document.getElementById('deviceInfo');
-            
-            const email = 'ferchettocomercial@gmail.com';
-            const subject = 'Información';
-            const body = 'Hola, quiero contactarte';
-            
-            if (isMobile()) {
-                // Móvil: usar mailto
-                btn.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                deviceInfo.textContent = '📱 Dispositivo móvil detectado - Usando app nativa';
-                btn.innerHTML = '📱 Enviar Email (App)';
+        function sendEmail() {
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+            if (isMobile) {
+                window.location.href =
+                    'mailto:ferchettocomercial@gmail.com?subject=Información&body=Hola, quiero contactarte';
             } else {
-                // Escritorio: usar Gmail web
-                btn.href = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                deviceInfo.textContent = '💻 Escritorio detectado - Usando Gmail web';
-                btn.innerHTML = '💻 Enviar Email (Gmail)';
+                window.open(
+                    'https://mail.google.com/mail/?view=cm&fs=1&to=ferchettocomercial@gmail.com&su=Información&body=Hola,%20quiero%20contactarte',
+                    '_blank');
             }
         }
+
+
+
         class ImageSlider {
             constructor(sliderElement) {
                 this.slider = sliderElement;
